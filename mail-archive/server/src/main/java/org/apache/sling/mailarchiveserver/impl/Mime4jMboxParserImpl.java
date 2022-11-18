@@ -27,6 +27,7 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.file.Files;
 import java.util.Iterator;
 
 import org.apache.felix.scr.annotations.Component;
@@ -60,7 +61,7 @@ public class Mime4jMboxParserImpl implements MboxParser {
 			FileOutputStream fileOS = null;
 			try {
 				// create temp file
-				tempFile = File.createTempFile("MAS_", ".mbox");
+				tempFile = Files.createTempFile("MAS_", ".mbox").toFile();
 				tempFileAbsPath = tempFile.getAbsolutePath();
 				fileOS = new FileOutputStream(tempFile);
 				FileChannel fileChannel = fileOS.getChannel();

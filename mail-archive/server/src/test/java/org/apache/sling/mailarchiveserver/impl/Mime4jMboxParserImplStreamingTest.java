@@ -26,6 +26,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 
 import org.apache.sling.mailarchiveserver.impl.Mime4jMboxParserImpl.Mime4jParserIterator;
 import org.apache.sling.mailarchiveserver.util.TU;
@@ -62,7 +63,7 @@ public class Mime4jMboxParserImplStreamingTest {
 			final byte[] sample = new byte[(int) fileToSample.length()];
 			assertEquals("Expecting the correct number of bytes read", fis.read(sample), fileToSample.length()); 
 
-			tempf = File.createTempFile("MAS_", ".mbox");
+			tempf = Files.createTempFile("MAS_", ".mbox").toFile();
 			fos = new FileOutputStream(tempf);
 			for (int i = 0; i < count; i++) {
 				fos.write(sample);
